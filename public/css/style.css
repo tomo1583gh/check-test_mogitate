@@ -1,0 +1,292 @@
+/* ===== 共通ヘッダー ===== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 16px 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f4aa00;
+    font-family: 'Arial', sans-serif;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ===== 全体レイアウト ===== */
+.product-page {
+    display: flex;
+    padding: 30px;
+    gap: 40px;
+}
+
+/* ===== サイドバー（検索・並び替え） ===== */
+.sidebar {
+    width: 220px;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-search {
+    width: 100%;
+    padding: 8px 10px;
+    background-color: #f4aa00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sort-label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ===== 並び替えタグ ===== */
+.sort-tag {
+    margin-top: 12px;
+    background-color: #f0f0f0;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #444;
+}
+
+.tag-remove {
+    margin-left: 8px;
+    color: #999;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.tag-remove:hover {
+    color: #f00;
+}
+
+/* ===== 商品一覧セクション ===== */
+.product-list {
+    flex: 1;
+}
+
+.btn-add {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    background-color: #f4aa00;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ===== 商品カードグリッド ===== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* ===== ページネーション（任意調整） ===== */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* create */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 10px 16px;
+    background-color: #ccc;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* show */
+.detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: #888;
+    text-decoration: none;
+}
+
+.detail-content {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.detail-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.detail-form {
+    flex: 1;
+}
+
+.detail-form .form-group {
+    margin-bottom: 20px;
+}
+
+.detail-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.detail-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+.season-tags {
+    display: flex;
+    gap: 10px;
+}
+
+.season-label {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #eee;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.detail-description {
+    margin-bottom: 30px;
+}
+
+.detail-description label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.detail-description p {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-radius: 4px;
+    line-height: 1.6;
+}
+
+.detail-footer {
+    text-align: center;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #ccc;
+    color: #333;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.image-input {
+    margin-top: 8px;
+}
+
+.btn-submit {
+    background-color: #f4aa00;
+    color: white;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -31,7 +33,7 @@ class ProductController extends Controller
 
         $products = $query->paginate(6)->appends($request->query());
 
-        return view('profucts.index', [
+        return view('products.index', [
             'products' => $products,
             'keyword' => $request->keyword,
             'soft' => $request->soft,
@@ -46,7 +48,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -55,9 +57,22 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        // 画像保存
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('image', 'public');
+            $validated['image_path'] = $path;
+        }
+
+        // JSON保存
+        $validated['season'] = json_encode($validated['season']);
+
+        Product::create($validated);
+
+        return redirect()->route('products.index')->with('success', '商品を登録しました');
     }
 
     /**
@@ -68,7 +83,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('products.show',compact('product'));
     }
 
     /**
@@ -89,9 +106,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $data = $request->validated();
+
+        // 画像をアップロードした場合のみ更新
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $data['image_path'] = $path;
+        }
+
+        $data['season'] = json_encode($data['season']);
+
+        $product->update($data);
+
+        return redirect()->route('products.index')->with('success', '商品を更新しました');
     }
 
     /**
@@ -102,6 +133,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', '商品を削除しました');
     }
 }
