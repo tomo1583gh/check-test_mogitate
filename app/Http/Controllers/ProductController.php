@@ -25,9 +25,9 @@ class ProductController extends Controller
         }
 
         // 並び替え処理
-        if ($request->soft === 'asc') {
+        if ($request->sort === 'asc') {
             $query->orderBy('price', 'asc');
-        } elseif ($request->soft === 'desc') {
+        } elseif ($request->sort === 'desc') {
             $query->orderBy('price', 'desc');
         }
 
@@ -36,7 +36,7 @@ class ProductController extends Controller
         return view('products.index', [
             'products' => $products,
             'keyword' => $request->keyword,
-            'soft' => $request->soft,
+            'sort' => $request->sort,
         ]);
     }
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         // 画像保存
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('image', 'public');
+            $path = $request->file('image')->store('images', 'public');
             $validated['image_path'] = $path;
         }
 
@@ -118,7 +118,7 @@ class ProductController extends Controller
             $data['image_path'] = $path;
         }
 
-        $data['season'] = json_encode($data['season']);
+        $data['season'] = json_encode($request->input('season', []));
 
         $product->update($data);
 

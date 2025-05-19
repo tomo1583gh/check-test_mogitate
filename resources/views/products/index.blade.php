@@ -40,6 +40,14 @@
                 <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
                 <h3>{{ $product->name }}</h3>
                 <p>¥{{ number_format($product->price) }}</p>
+
+                {{-- ✅ 季節の表示 --}}
+                <div class="season-tags">
+                    @foreach (json_decode($product->season ?? '[]', true) as $season)
+                        <span class="season-label">{{ $season }}</span>
+                    @endforeach
+
+                </div>
             </a>
             @empty
             <p>商品が見つかりませんでした。</p>

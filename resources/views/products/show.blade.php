@@ -32,13 +32,25 @@
 
                 <div class="form-group">
                     <label>季節</label><br>
+
+                    @php
+                    $selectedSeasons = old('season');
+
+                    if (!is_array($selectedSeasons)) {
+                    $selectedSeasons = is_array($product->season)
+                    ? $product->season
+                    : json_decode($product->season, true); // 念のためデコード対応も追加
+                    }
+                    @endphp
+
                     @foreach (['春', '夏', '秋', '冬'] as $season)
                     <label>
                         <input type="checkbox" name="season[]" value="{{ $season }}"
-                            {{ in_array($season, old('season', json_decode($product->season, true))) ? 'checked' : '' }}>
+                            {{ in_array($season, $selectedSeasons) ? 'checked' : '' }}>
                         {{ $season }}
                     </label>
                     @endforeach
+
                     @error('season') <div class="error-message">{{ $message }}</div> @enderror
                 </div>
             </div>
