@@ -32,22 +32,20 @@
 
     <!-- ✅ 右：商品カード一覧 -->
     <section class="product-list">
-        <a href="{{ route('products.create') }}" class="btn-add">＋商品を追加</a>
+        <div class="product-list-header">
+            <div class="spacer"></div>
+            <a href="{{ route('products.create') }}" class="btn-add">＋商品を追加</a>
+        </div>
 
         <div class="product-grid">
             @forelse ($products as $product)
             <a href="{{ route('products.show', $product->id) }}" class="product-card">
                 <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
-                <h3>{{ $product->name }}</h3>
-                <p>¥{{ number_format($product->price) }}</p>
-
-                {{-- ✅ 季節の表示 --}}
-                <div class="season-tags">
-                    @foreach (json_decode($product->season ?? '[]', true) as $season)
-                        <span class="season-label">{{ $season }}</span>
-                    @endforeach
-
+                <div class="product-info-row">
+                    <span class="product-name">{{ $product->name }}</span>
+                    <span class="product-price">¥{{ number_format($product->price) }}</span>
                 </div>
+
             </a>
             @empty
             <p>商品が見つかりませんでした。</p>

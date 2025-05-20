@@ -61,14 +61,14 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
+        // ✅ season が未選択のときも空配列で扱う
+        $validated['season'] = $request->input('season', []);
+
         // 画像保存
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
             $validated['image_path'] = $path;
         }
-
-        // JSON保存
-        $validated['season'] = json_encode($validated['season']);
 
         Product::create($validated);
 
@@ -118,11 +118,11 @@ class ProductController extends Controller
             $data['image_path'] = $path;
         }
 
-        $data['season'] = json_encode($request->input('season', []));
+        $data['season'] = $request->input('season',[]);
 
         $product->update($data);
 
-        return redirect()->route('products.index')->with('success', '商品を更新しました');
+        return redirect()->route('products.index', ['keyword' => $request->name])->with('success', '商品を更新しました');
     }
 
     /**
