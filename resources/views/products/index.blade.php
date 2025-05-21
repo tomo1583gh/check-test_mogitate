@@ -34,7 +34,7 @@
     <section class="product-list">
         <div class="product-list-header">
             <div class="spacer"></div>
-            <a href="{{ route('products.create') }}" class="btn-add">＋商品を追加</a>
+            <a href="{{ route('products.register') }}" class="btn-add">＋商品を追加</a>
         </div>
 
         <div class="product-grid">

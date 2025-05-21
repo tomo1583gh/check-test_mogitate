@@ -48,7 +48,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.register');
     }
 
     /**
@@ -122,7 +122,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('products.index', ['keyword' => $request->name])->with('success', '商品を更新しました');
+        return redirect()->route('products.index')->with('success', '商品を更新しました');
     }
 
     /**
