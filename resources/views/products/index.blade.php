@@ -53,9 +53,33 @@
         </div>
 
         {{-- ✅ ページネーション --}}
+        @if ($products->lastPage() > 1)
         <div class="pagination">
-            {{ $products->links() }}
+            {{-- 前へ --}}
+            @if ($products->onFirstPage())
+            <span class="page-link disabled">&lt;</span>
+            @else
+            <a href="{{ $products->previousPageUrl() }}" class="page-link">&lt;</a>
+            @endif
+
+            {{-- ページ番号 --}}
+            @for ($i = 1; $i <= $products->lastPage(); $i++)
+                @if ($i == $products->currentPage())
+                <span class="page-link active">{{ $i }}</span>
+                @else
+                <a href="{{ $products->url($i) }}" class="page-link">{{ $i }}</a>
+                @endif
+                @endfor
+
+                {{-- 次へ --}}
+                @if ($products->hasMorePages())
+                <a href="{{ $products->nextPageUrl() }}" class="page-link">&gt;</a>
+                @else
+                <span class="page-link disabled">&gt;</span>
+                @endif
         </div>
+        @endif
+
     </section>
 </div>
 @endsection

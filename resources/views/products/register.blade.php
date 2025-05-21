@@ -52,15 +52,17 @@
             </div>
 
             <div class="season-options">
-                @foreach (['春', '夏', '秋', '冬'] as $season)
+                @foreach ($seasons as $season)
                 <label>
-                    <input type="checkbox" name="season[]" value="{{ $season }}"
-                        {{ is_array(old('season')) && in_array($season, old('season')) ? 'checked' : '' }}> {{ $season }}</label><br>
+                    <input type="checkbox" name="season[]" value="{{ $season->id }}"
+                        {{ in_array($season->id, old('season', [])) ? 'checked' : '' }}>
+                    {{ $season->name }}
+                </label>
                 @endforeach
             </div>
 
             @foreach ($errors->get('season') as $message)
-                <div class="error-message">{{ $message }}</div>
+            <div class="error-message">{{ $message }}</div>
             @endforeach
         </div>
 
@@ -72,7 +74,7 @@
             <textarea name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
 
             @foreach ($errors->get('description') as $message)
-                <div class="error-message">{{ $message }}</div>
+            <div class="error-message">{{ $message }}</div>
             @endforeach
         </div>
 

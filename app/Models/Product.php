@@ -21,4 +21,9 @@ class Product extends Model
     protected $casts = [
         'season' => 'array',
     ];
+
+    public function seasons()
+    {
+        return $this->belongsToMany(season::class);
+    }
 }

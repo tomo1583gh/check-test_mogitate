@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Season;
 
 class ProductController extends Controller
 {
@@ -48,7 +49,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.register');
+        $seasons = Season::all();
+        return view('products.register', compact('seasons'));
     }
 
     /**
@@ -70,7 +72,11 @@ class ProductController extends Controller
             $validated['image_path'] = $path;
         }
 
-        Product::create($validated);
+        // 商品保存
+        $product = Product::create($validated);
+
+        // 中間テーブルに季節を保存(多対多）
+        $product->seasons()->sync($request->input('season', []));
 
         return redirect()->route('products.index')->with('success', '商品を登録しました');
     }
@@ -84,8 +90,8 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-
-        return view('products.show',compact('product'));
+        $seasons = Season::all();
+        return view('products.show', compact('product', 'seasons'));
     }
 
     /**
@@ -118,9 +124,10 @@ class ProductController extends Controller
             $data['image_path'] = $path;
         }
 
-        $data['season'] = $request->input('season',[]);
-
         $product->update($data);
+
+        // 中間テーブルのseasonを更新（syncで差し替え）
+        $product->seasons()->sync($request->input('season', []));
 
         return redirect()->route('products.index')->with('success', '商品を更新しました');
     }

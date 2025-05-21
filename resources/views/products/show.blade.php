@@ -44,11 +44,11 @@
                 <div class="form-group">
                     <label>季節</label><br>
                     <div class="season-options">
-                        @foreach (['春','夏','秋','冬'] as $season)
+                        @foreach ($seasons as $season)
                         <label>
-                            <input type="checkbox" name="season[]" value="{{ $season }}"
-                                {{ in_array($season, old('season', $product->season ?? [])) ? 'checked' : '' }}>
-                            {{ $season }}
+                            <input type="checkbox" name="season[]" value="{{ $season->id }}"
+                                {{ in_array($season->id, old('season', $product->seasons->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            {{ $season->name }}
                         </label>
                         @endforeach
                     </div>
@@ -73,7 +73,7 @@
         {{-- フッター：ボタン --}}
         <div class="detail-footer">
             {{-- 左：中央寄せの戻る・保存 --}}
-            <div class="footer-center">
+            <div class="form-footer">
                 <a href="{{ route('products.index') }}" class="btn-back">戻る</a>
                 <button type="submit" class="btn-submit">変更を保存</button>
             </div>
@@ -81,7 +81,7 @@
     </form>
 
     {{-- 右：削除ボタン --}}
-    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="footer-delete">
+    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn-delete" onclick="return confirm('本当に削除しますか？')">🗑</button>
