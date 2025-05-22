@@ -48,6 +48,3 @@
 - 季節の複数選択対応（中間テーブル使用）
 - 入力バリデーション
 
-## 商品一覧画面
-
-![商品一覧](src/public/images/screenshots/products-list.png)
