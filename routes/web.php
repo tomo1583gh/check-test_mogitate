@@ -31,7 +31,7 @@ Route::put('/products/{id}/update', [ProductController::class, 'update'])->name(
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
 /* 削除 */
-Route::post('/products/{id}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::delete('/products/{id}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
 
 /* TOPリダイレクト */
 Route::get('/', function () {

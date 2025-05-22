@@ -40,7 +40,8 @@
         <div class="product-grid">
             @forelse ($products as $product)
             <a href="{{ route('products.show', $product->id) }}" class="product-card">
-                <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}">
+                <img src="{{ asset('storage/'. $product->image_path) }}" alt="{{ $product->name }}">
+
                 <div class="product-info-row">
                     <span class="product-name">{{ $product->name }}</span>
                     <span class="product-price">¥{{ number_format($product->price) }}</span>
