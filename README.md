@@ -36,7 +36,7 @@
 
 ## ER図
 
-![ER図](public/images/ER.png)
+![ER図](src/public/images/ER.png)
 
 ## 主な機能
 
