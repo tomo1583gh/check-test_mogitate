@@ -17,7 +17,7 @@
                 <input type="file" name="image" class="image-input">
 
                 @foreach ($errors->get('image') as $message)
-                <div class="error-message">{{ $message }}</div>
+                    <div class="error-message">{{ $message }}</div>
                 @endforeach
             </div>
 
