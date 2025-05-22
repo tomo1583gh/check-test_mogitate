@@ -48,3 +48,8 @@
 - 季節の複数選択対応（中間テーブル使用）
 - 入力バリデーション
 
+## 補足
+
+登録商品のダミーデータの画像につきましては下記のファイルにありますのでご利用ください。
+
+(check-test_mogitate/src/storage/app/public/images/sample.jpeg)
