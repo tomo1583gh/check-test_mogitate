@@ -1,2 +1,4 @@
 *
 !.gitignore
+__MACOSX
+.DS_Store
