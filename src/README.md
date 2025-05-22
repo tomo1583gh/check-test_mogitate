@@ -48,6 +48,3 @@
 - 季節の複数選択対応（中間テーブル使用）
 - 入力バリデーション
 
-## サンプル
-
-![一覧画面](public/imegas/mogitate-product.png)
