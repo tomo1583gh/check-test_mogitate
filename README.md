@@ -19,7 +19,7 @@
 4. php artisan key:generate
 5. php artisan migrate
 6. php artisan db:seed
-*この後必要に応じて以下を試してください
+-この後必要に応じて以下を試してください
 7. rmdir public\storage -> [Y]yesを入力して一度リンクを削除
 8. php artisan storage:link 再度リンクを作成
 9. ブラウザの再読みを行なうとダミーデータの画像が読み込まれる事がある
